@@ -1,37 +1,49 @@
 import java.util.Stack;
 
-class Game {
+// This class acts like the game engine.
+// Game class is the core of the application.
+class Game
+{
+  // Game class members
   public final int windowHeight;
   public final int windowWidth;
   public Stack layouts;
   
-  Game() {
+  // Constructor
+  Game()
+  {
     this.windowWidth = height;
     this.windowHeight = width;
     this.initLayouts();
   }
   
-  void initLayouts() {
-    layouts = new Stack<Layout>();
-    layouts.push(new MainMenu(windowHeight, windowWidth));
+  public void initLayouts()
+  {
+    // This method initializes all layouts.
+    // The last layout initialized is the one
+    // which is going to be rendered into the
+    // screen.
+    
+    this.layouts = new Stack<Layout>();
+    this.layouts.push(new MainMenu(this.windowHeight, this.windowWidth));
   }
   
-  void run() {
-    this.update();
-    this.render();
-  }
-  
-  void update() {
-    if (!this.layouts.empty()) {
+  public void run()
+  {
+    // This method updates and renders the top
+    // layout.
+    
+    // If there are still layouts in the layouts stack
+    if (this.layouts.empty() == false)
+    {
       Layout layout = (Layout) this.layouts.peek();
       layout.update();
-    }
-  }
-  
-  void render() {
-    if (!this.layouts.empty()) {
-      Layout layout = (Layout) this.layouts.peek();
       layout.render();
+    }
+    // If not, exit application
+    else
+    {
+      exit();  
     }
   }
 }

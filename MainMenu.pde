@@ -1,11 +1,17 @@
 class MainMenu extends Layout {
   
+  Button button = new Button(100, 100, 150, 50, "New Game", #000000, #111111, #222222);
+  
   MainMenu(float width, float height) {
     super(width, height);
   }
   
-  void render() {
+  public void update() {
+    button.update(); 
+  }
+  
+  public void render() {
     background(#faafb2);
-    rect(200, 200, 200, 300); 
+    button.render();
   }
 }

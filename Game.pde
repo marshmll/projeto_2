@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Stack;
 
 class Game {
   public final int windowHeight;
@@ -22,7 +22,10 @@ class Game {
   }
   
   void update() {
-    
+    if (!this.layouts.empty()) {
+      Layout layout = (Layout) this.layouts.peek();
+      layout.update();
+    }
   }
   
   void render() {

@@ -7,5 +7,6 @@ class Layout {
     this.height = height;
   }
   
+  void update() {};
   void render() {};
 }

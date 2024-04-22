@@ -10,26 +10,47 @@ class Button
 {
   // All button members
   public boolean isPressed;
+  
   private ButtonState state;
+  
   private final float x;
   private final float y;
+  
   private final float width;
   private final float height;
+  
   private final String text;
+  private final int textSize;
+  
+  private final color textIdleColor;
+  private final color textHoverColor;
+  private final color textActiveColor;
+  
   private final color idleColor;
   private final color hoverColor;
   private final color activeColor;
 
   // Constructor 
-  Button(float x, float y, float width, float height, String text,
+  Button(float x, float y, float width, float height,
+         String text, int textSize,
+         color textIdleColor, color textHoverColor, color textActiveColor,
          color idleColor, color hoverColor, color activeColor)
   {         
     this.state = ButtonState.BTN_IDLE;
+    
     this.x = x;
     this.y = y;
+    
     this.width = width;
     this.height = height;
+    
     this.text = text;
+    this.textSize = textSize;
+    
+    this.textIdleColor = textIdleColor;
+    this.textHoverColor = textHoverColor;
+    this.textActiveColor = textActiveColor;
+    
     this.idleColor = idleColor;
     this.hoverColor = hoverColor;
     this.activeColor = activeColor;
@@ -91,25 +112,19 @@ class Button
     // This method updates the button fill collor
     // according to its state.
     
-    if (this.state != ButtonState.BTN_IDLE)
+    switch (this.state)
     {
-      switch (this.state)
-      {
-      case BTN_HOVER:
-        fill(this.hoverColor);
-        break;
-        
-      case BTN_ACTIVE:
-        fill(this.activeColor);
-        break;
-        
-       default:
-         break;
-      }
-    }
-    else
-    {
-      fill(this.idleColor);  
+    case BTN_IDLE:
+      fill(this.idleColor);
+      break;
+      
+    case BTN_HOVER:
+      fill(this.hoverColor);
+      break;
+      
+    case BTN_ACTIVE:
+      fill(this.activeColor);
+      break;
     }
   }
   
@@ -118,8 +133,22 @@ class Button
     // This method renders the text in the center of
     // the button.
     
-    fill(255);
-    textSize(16);
+    switch (this.state)
+    {
+    case BTN_IDLE:
+      fill(this.textIdleColor);
+      break;
+      
+    case BTN_HOVER:
+      fill(this.textHoverColor);
+      break;
+      
+    case BTN_ACTIVE:
+      fill(this.textActiveColor);
+      break;
+    }
+    
+    textSize(this.textSize);
     
     float textHeight = textAscent() + textDescent();
     

@@ -1,7 +1,7 @@
 Game game;
 
 void setup() {
-  size(800, 600);
+  size(1100, 700);
   background(0);
   noStroke();
   frameRate(60);

@@ -1,6 +1,6 @@
 class MainMenu extends Layout
 {
-  HashMap<String, Button> buttons;
+  HashMap<String, Button> buttons = new HashMap<String, Button>();
   
   MainMenu(float width, float height)
   {
@@ -9,12 +9,21 @@ class MainMenu extends Layout
   }
   
   private void initButtons()
-  {
-    this.buttons = new HashMap<String, Button>();
+  { 
+    this.buttons.put("NEW_GAME", new Button(100, 100, 250, 50,
+                                            "New Game", 30,
+                                            #333333, #fefefe, #111111,
+                                            #11111100, #11111100, #22222200));
     
-    this.buttons.put("NEW_GAME", new Button(100, 100, 150, 50, "New Game", #000000, #111111, #222222));
-    this.buttons.put("QUIT", new Button(100, 200, 150, 50, "Quit", #000000, #111111, #222222));
-    this.buttons.put("TEST", new Button(100, 300, 150, 50, "Test", #222222, #333333, #444444));
+    this.buttons.put("QUIT", new Button(100, 200, 250, 50,
+                                        "Quit", 30,
+                                        #333333, #fefefe, #111111,
+                                        #11111100, #11111100, #22222200));
+    
+    this.buttons.put("TEST", new Button(100, 300, 250, 50,
+                                        "Test", 30,
+                                        #333333, #fefefe, #111111,
+                                        #11111100, #11111100, #22222200));
   }
   
   public void update()

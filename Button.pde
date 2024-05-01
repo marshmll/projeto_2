@@ -1,4 +1,4 @@
-enum ButtonState // All possible buttons states
+enum button_state // All possible buttons states
 {
   BTN_IDLE,   // Idle is the standard state
   BTN_HOVER,  // Hover is for mouse is over
@@ -8,20 +8,24 @@ enum ButtonState // All possible buttons states
 // This is the base class for any button.
 class Button
 {
-  // All button members
-  public boolean isPressed;
+  /* BUTTONS VARIABLES */
+  public boolean isPressed; // Stores if button is pressed
   
-  private ButtonState state;
+  private button_state state; // Stores the button state
   
+  // Positioning
   private final float x;
   private final float y;
   
+  // Dimensions
   private final float width;
   private final float height;
   
+  // Text
   private final String text;
   private final int textSize;
   
+  // Colors
   private final color textIdleColor;
   private final color textHoverColor;
   private final color textActiveColor;
@@ -36,7 +40,7 @@ class Button
          color textIdleColor, color textHoverColor, color textActiveColor,
          color idleColor, color hoverColor, color activeColor)
   {         
-    this.state = ButtonState.BTN_IDLE;
+    this.state = button_state.BTN_IDLE;
     
     this.x = x;
     this.y = y;
@@ -79,6 +83,11 @@ class Button
     this.renderText();
   }
   
+  public boolean isPressed()
+  {
+    return this.isPressed;
+  }
+  
   private void updateMouseInteraction()
   {
     // This method keeps the button state updated and
@@ -87,7 +96,7 @@ class Button
     // state.
     
     // Reset the button state
-    this.state = ButtonState.BTN_IDLE;
+    this.state = button_state.BTN_IDLE;
     this.isPressed = false;
     
     // If the mouse position is inside the button area
@@ -95,13 +104,13 @@ class Button
     && mouseY >= this.y && mouseY <= this.y + this.height)
     {
       // Update the state to hover and chance cursor.
-      this.state = ButtonState.BTN_HOVER;
+      this.state = button_state.BTN_HOVER;
       
       // If the mouse is clicked
       if (mousePressed)
       {
         // Set state to active.
-        this.state = ButtonState.BTN_ACTIVE;
+        this.state = button_state.BTN_ACTIVE;
         this.isPressed = true;
       }
     }
@@ -150,7 +159,7 @@ class Button
     
     textSize(this.textSize);
     
-    float textHeight = textAscent() + textDescent();
+    float textHeight = textAscent();
     
     text(this.text, this.x + this.width / 2 - textWidth(this.text) / 2,
          this.y + this.height / 2 + textHeight / 2);

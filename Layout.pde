@@ -1,7 +1,7 @@
 // This class is used as the base class for any screen
 // of the game, like main menu and game screens. 
 
-class Layout
+public class Layout
 {
   public float width;
   public float height;
@@ -12,6 +12,6 @@ class Layout
     this.height = height;
   }
   
-  void update() {};
-  void render() {};
+  public void update() {};
+  public void render() {};
 }

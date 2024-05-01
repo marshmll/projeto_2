@@ -12,8 +12,8 @@ class Game
   // Constructor
   Game()
   {
-    this.windowWidth = height;
-    this.windowHeight = width;
+    this.windowWidth = width;
+    this.windowHeight = height;
     this.initLayouts();
   }
   
@@ -25,7 +25,7 @@ class Game
     // screen.
     
     this.layouts = new Stack<Layout>();
-    this.layouts.push(new MainMenu(this.windowHeight, this.windowWidth));
+    this.layouts.push(new MainMenuLayout(this.windowWidth, this.windowHeight));
   }
   
   public void run()

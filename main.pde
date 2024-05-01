@@ -1,12 +1,12 @@
 Game game;
 
 void setup() {
-  size(1100, 700);
+  fullScreen();
   background(0);
   noStroke();
   frameRate(60);
   
-  surface.setTitle("Game");
+  surface.setTitle("BioQuiz");
   
   game = new Game();
 }

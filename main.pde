@@ -8,7 +8,6 @@ void setup() {
   fullScreen();
   background(0);
   noStroke();
-  frameRate(60);
   
   surface.setTitle("BioQuiz");
   

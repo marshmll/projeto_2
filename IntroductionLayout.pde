@@ -1,6 +1,6 @@
 class IntroductionLayout extends Layout
 {
-  Button nextBtn;
+  Button startBtn;
   
   IntroductionLayout(float width, float height)
   {
@@ -11,7 +11,7 @@ class IntroductionLayout extends Layout
   
   private void initButtons()
   {
-    this.nextBtn = new Button(this.width / 2 - 125, this.height - 250, 250, 50,
+    this.startBtn = new Button(this.width / 2 - 125, this.height - 250, 250, 50,
                           "INICIAR", 30,
                           #FFFFFF, #FEFEFE, #B90404, 
                           #B90404, #EE0000, #AA0000); 
@@ -19,14 +19,15 @@ class IntroductionLayout extends Layout
   
   public void update()
   {
-    
+    if (this.startBtn.isPressed())
+      game.layouts.push(new GameLayout(this.width, this.height));
   }
   
   public void render()
   {
     this.renderBackground();
     this.renderText();
-    this.nextBtn.updateAndRender();
+    this.startBtn.updateAndRender();
   }
   
   private void renderBackground()

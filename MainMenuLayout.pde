@@ -8,7 +8,7 @@ public class MainMenuLayout extends Layout
   {
     super(width, height);
     
-    this.logo = loadImage("logo2.png");
+    this.logo = loadImage("logo_with_cell.png");
     
     this.initButtons();
   }

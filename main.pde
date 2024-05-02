@@ -13,8 +13,8 @@ void setup() {
   
   game = new Game();
   
-  JetBrainsMonoRegular = createFont("JetBrainsMono-Regular.ttf", 20);
-  JetBrainsMonoBold = createFont("JetBrainsMono-Bold.ttf", 20);
+  JetBrainsMonoRegular = createFont("Fonts/JetBrainsMono-Regular.ttf", 20);
+  JetBrainsMonoBold = createFont("Fonts/JetBrainsMono-Bold.ttf", 20);
   
 }
 

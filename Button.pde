@@ -161,6 +161,8 @@ class Button
     
     float textHeight = textAscent();
     
+    textAlign(LEFT);
+    textFont(JetBrainsMonoRegular);
     text(this.text, this.x + this.width / 2 - textWidth(this.text) / 2,
          this.y + this.height / 2 + textHeight / 2);
   }

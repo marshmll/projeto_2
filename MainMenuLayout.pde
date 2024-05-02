@@ -8,29 +8,24 @@ public class MainMenuLayout extends Layout
   {
     super(width, height);
     
-    this.logo = loadImage("logo.png");
+    this.logo = loadImage("logo2.png");
     
     this.initButtons();
   }
   
   private void initButtons()
   { 
-    this.buttons.put("NEW_GAME", new Button(this.width / 2 - 125, 300, 250, 50,
+    this.buttons.put("NEW_GAME", new Button(this.width / 2 - 125, 400, 250, 50,
                                             "JOGAR", 30,
                                             #FFFFFF, #FEFEFE, #B90404,
                                             #B90404, #EE0000, #AA0000));
                                             
-    this.buttons.put("RULES", new Button(this.width / 2 - 125, 400, 250, 50,
-                                            "REGRAS", 30,
-                                            #FFFFFF, #FEFEFE, #E8E21C,
-                                            #E8E21C, #EEEE00, #AAAA00));
-                                            
-    this.buttons.put("ABOUT", new Button(this.width / 2 - 125, 500, 250, 50,
+    this.buttons.put("ABOUT", new Button(this.width / 2 - 125, 480, 250, 50,
                                             "SOBRE", 30,
                                             #FFFFFF, #FEFEFE, #45B723,
                                             #45B723, #007000, #004000));
                                             
-    this.buttons.put("EXIT", new Button(this.width / 2 - 125, 600, 250, 50,
+    this.buttons.put("EXIT", new Button(this.width / 2 - 125, 560, 250, 50,
                                             "SAIR", 30,
                                             #FFFFFF, #FEFEFE, #000080,
                                             #000080, #000070, #000040));
@@ -45,11 +40,7 @@ public class MainMenuLayout extends Layout
   {
     if (this.buttons.get("NEW_GAME").isPressed())
     {
-      game.layouts.push(new GameLayout(game.windowWidth, game.windowHeight));
-    }
-    else if (this.buttons.get("RULES").isPressed())
-    {
-
+      game.layouts.push(new IntroductionLayout(game.windowWidth, game.windowHeight));
     }
     else if (this.buttons.get("ABOUT").isPressed())
     {
@@ -70,7 +61,7 @@ public class MainMenuLayout extends Layout
   
   private void renderBackground()
   {
-    background(#f2f2f2);
+    background(#EAEAEA);
     image(logo, width/2 - logo.width/2 , 100);
   }
   

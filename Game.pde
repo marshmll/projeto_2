@@ -1,37 +1,57 @@
 import java.util.Stack;
 
-// This class acts like the game engine.
-// Game class is the core of the application.
+/*
+This class acts like the game engine.
+Game class is the core of the application.
+*/
 class Game
 {
-  // Game class members
-  public final int windowHeight;
-  public final int windowWidth;
-  public Stack layouts;
+  /* SCREEN DIMENSIONS */
+  protected final int windowHeight;
+  protected final int windowWidth;
   
-  // Constructor
+  /* LAYOUTS */
+  private Stack layouts;
+  
+  /* CONSTRUCTOR */
   Game()
   {
     this.windowWidth = width;
     this.windowHeight = height;
+    
     this.initLayouts();
+    //this.playMainTheme();
   }
   
-  public void initLayouts()
+  private void initLayouts()
   {
-    // This method initializes all layouts.
-    // The last layout initialized is the one
-    // which is going to be rendered into the
-    // screen.
+    /*
+      @return void
+    
+      This method initializes all layouts.
+      The last layout initialized is the one
+      which is going to be rendered into the
+      screen and updated.
+    */
     
     this.layouts = new Stack<Layout>();
-    this.layouts.push(new MainMenuLayout(this.windowWidth, this.windowHeight));
+    this.pushLayout(new MainMenuLayout(this.windowWidth, this.windowHeight));
   }
   
-  public void run()
+  //private void playMainTheme()
+  //{
+  //  mainTheme.loop();
+  //  mainTheme.amp(0.2);
+  //}
+  
+  protected void run()
   {
-    // This method updates and renders the top
-    // layout.
+    /*
+    @return void
+    
+    This method updates and renders at the top
+    of the layouts stack.
+    */
     
     // If there are still layouts in the layouts stack
     if (this.layouts.empty() == false)
@@ -45,5 +65,27 @@ class Game
     {
       exit();  
     }
+  }
+  
+  protected void pushLayout(Layout layout)
+  {
+    /*
+      @return void
+      
+      Pushes a new layout into the layouts stack.
+    */
+    
+    this.layouts.push(layout);
+  }
+  
+  protected void endCurrentLayout()
+  {
+    /*
+      @return void
+      
+      Pops the layout at the top of the stack.
+    */
+    
+    this.layouts.pop();
   }
 }

@@ -5,13 +5,16 @@ enum button_state // All possible buttons states
   BTN_ACTIVE  // Active is for mouse clicked
 }
 
-// This is the base class for any button.
+/* This is the base class for all buttons. */
 class Button
 {
   /* BUTTONS VARIABLES */
-  public boolean isPressed; // Stores if button is pressed
   
-  private button_state state; // Stores the button state
+  // Stores if button is pressed
+  public boolean isPressed; 
+  
+  // Stores the button state
+  private button_state state;
   
   // Positioning
   private final float x;
@@ -25,17 +28,18 @@ class Button
   private final String text;
   private final int textSize;
   
-  // Colors
+  // Text colors
   private final color textIdleColor;
   private final color textHoverColor;
   private final color textActiveColor;
   
+  // Shape colors
   private final color idleColor;
   private final color hoverColor;
   private final color activeColor;
 
-  // Constructor 
-  Button(float x, float y, float width, float height,
+  /* CONSTRUCTOR */
+  public Button(float x, float y, float width, float height,
          String text, int textSize,
          color textIdleColor, color textHoverColor, color textActiveColor,
          color idleColor, color hoverColor, color activeColor)
@@ -62,22 +66,39 @@ class Button
   
   public void updateAndRender() 
   {
+    /*
+      @return void
+      
+      Updates and renders the button in the screen.
+    */
+    
     this.update();
     this.render();
   }
   
-  // Update method.
   public void update()
-  {  
+  {
+    /*
+      @return void
+      
+      Updates the mouse interactions and
+      updates the fill color.
+    */
+    
     this.updateMouseInteraction();
     this.updateFillColor();
   }
   
   public void render()
   {
-    // This method renders the button shape into the
-    // screen and renders the text in the center of
-    // the button.
+    /*
+      @return void
+      
+      This method renders the button shape into the
+      screen and renders the text in the center of
+      the button.
+    */
+    
     rect(this.x, this.y, this.width, this.height);
     
     this.renderText();
@@ -85,15 +106,25 @@ class Button
   
   public boolean isPressed()
   {
+    /*
+      @return boolean
+      
+      Returns if the button is pressed.
+    */
+    
     return this.isPressed;
   }
   
   private void updateMouseInteraction()
   {
-    // This method keeps the button state updated and
-    // change it when mouse hover or pressed.
-    // Also changes the mouse cursor to the respective
-    // state.
+    /*
+      @return void
+      
+      This method keeps the button state updated and
+      change it when mouse hover or pressed.
+      Also changes the mouse cursor to the respective
+      state.
+    */
     
     // Reset the button state
     this.state = button_state.BTN_IDLE;
@@ -118,8 +149,12 @@ class Button
   
   private void updateFillColor()
   { 
-    // This method updates the button fill collor
-    // according to its state.
+    /*
+      @return void
+      
+      This method updates the button fill collor
+      according to its state.
+    */
     
     switch (this.state)
     {
@@ -139,8 +174,12 @@ class Button
   
   private void renderText()
   {
-    // This method renders the text in the center of
-    // the button.
+    /*
+      @return void
+      
+      This method renders the text in the center of
+      the button.
+    */
     
     switch (this.state)
     {

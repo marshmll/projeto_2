@@ -1,5 +1,5 @@
-// This class is used as the base class for any screen
-// of the game, like main menu and game screens. 
+/* This class is used as the base class for any screen
+of the game, like main menu and game screens. */ 
 
 public class Layout
 {

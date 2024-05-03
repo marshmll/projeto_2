@@ -1,10 +1,13 @@
 public class MainMenuLayout extends Layout
 {
+  /* LOGO IMAGE */
   PImage logo;
   
+  /* A MAP OF ALL BUTTONS AND THEIR NAMES */
   HashMap<String, Button> buttons = new HashMap<String, Button>();
   
-  MainMenuLayout(float width, float height)
+  /* CONSTRUCTOR */
+  public MainMenuLayout(float width, float height)
   {
     super(width, height);
     
@@ -15,6 +18,12 @@ public class MainMenuLayout extends Layout
   
   private void initButtons()
   { 
+    /*
+      @return void
+      
+      Initializes all buttons.
+    */
+    
     this.buttons.put("NEW_GAME", new Button(this.width / 2 - 125, 400, 250, 50,
                                             "JOGAR", 30,
                                             #FFFFFF, #FEFEFE, #B90404,
@@ -33,14 +42,42 @@ public class MainMenuLayout extends Layout
   
   public void update()
   {
+    /*
+      @return void
+      
+      Updates the layout.
+    */
+    
+    this.updateSounds();
     this.updateButtons();
+  }
+  
+  private void updateSounds()
+  {
+    /*
+      @return void
+      
+      Updates the sounds.
+    */
+    
+    if (mousePressed && !clickSoundFx.isPlaying())
+    {
+      clickSoundFx.play();
+      clickSoundFx.amp(0.2);
+    }
   }
   
   public void updateButtons()
   {
+    /*
+      @return void
+      
+      Updates all buttons.
+    */
+    
     if (this.buttons.get("NEW_GAME").isPressed())
     {
-      game.layouts.push(new IntroductionLayout(game.windowWidth, game.windowHeight));
+      game.pushLayout(new IntroductionLayout(game.windowWidth, game.windowHeight));
     }
     else if (this.buttons.get("ABOUT").isPressed())
     {
@@ -48,12 +85,18 @@ public class MainMenuLayout extends Layout
     }
     else if (this.buttons.get("EXIT").isPressed())
     {
-      game.layouts.pop();
+      game.endCurrentLayout();
     }
   }
   
   public void render()
   {
+    /*
+      @return void
+      
+      Renders the layout into the screen.
+    */
+    
     this.renderBackground();
     
     this.renderButtons();

@@ -20,7 +20,7 @@ class Game
     this.windowHeight = height;
     
     this.initLayouts();
-    //this.playMainTheme();
+    this.playMainTheme();
   }
   
   private void initLayouts()
@@ -38,11 +38,11 @@ class Game
     this.pushLayout(new MainMenuLayout(this.windowWidth, this.windowHeight));
   }
   
-  //private void playMainTheme()
-  //{
-  //  mainTheme.loop();
-  //  mainTheme.amp(0.2);
-  //}
+  private void playMainTheme()
+  {
+    mainTheme.loop();
+    mainTheme.amp(0.2);
+  }
   
   protected void run()
   {

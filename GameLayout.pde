@@ -34,6 +34,9 @@ public class GameLayout extends Layout
   {
     this.gameImages = new HashMap<String, PImage>();
     
+    this.gameImages.put("Celulinha", loadImage("Images/char.png"));
+    this.gameImages.get("Celulinha").resize(100, 100);
+    
     this.gameImages.put("Ribossomo", loadImage("Images/game_ribossomo.png"));
     this.gameImages.put("Parede Celular", loadImage("Images/game_parede_celular.png"));
     this.gameImages.put("Mem. Plasmatica", loadImage("Images/game_membrana.png"));
@@ -59,18 +62,18 @@ public class GameLayout extends Layout
     
      this.dragBoxes = new HashMap<String, DragNDropBox>();
      
-     this.dragBoxes.put("Cloroplasto", new DragNDropBox(20, 100, "Cloroplasto"));
-     this.dragBoxes.put("Parede Celular", new DragNDropBox(20, 200, "Parede Celular"));
-     this.dragBoxes.put("Mem. Plasmática", new DragNDropBox(20, 300, "Mem. Plasmática"));
-     this.dragBoxes.put("Citoplasma", new DragNDropBox(20, 400, "Citoplasma"));
-     this.dragBoxes.put("Mitocôndria", new DragNDropBox(20, 500, "Mitocôndria"));
-     this.dragBoxes.put("C. de Golgi", new DragNDropBox(20, 600, "C. de Golgi"));
-     this.dragBoxes.put("R. Endoplasmático", new DragNDropBox(1060, 100, "R. Endoplasmático"));
-     this.dragBoxes.put("Nucléolo", new DragNDropBox(1060, 200, "Nucléolo"));
-     this.dragBoxes.put("Núcleo", new DragNDropBox(1060, 300, "Núcleo"));
-     this.dragBoxes.put("Vacúolo", new DragNDropBox(1060, 400, "Vacúolo"));
-     this.dragBoxes.put("Lisossomo", new DragNDropBox(1060, 500, "Lisossomo"));
-     this.dragBoxes.put("Ribossomo", new DragNDropBox(1060, 600, "Ribossomo"));
+     this.dragBoxes.put("Cloroplasto", new DragNDropBox(20, 200, "Cloroplasto"));
+     this.dragBoxes.put("Nucléolo", new DragNDropBox(20, 300, "Nucléolo"));
+     this.dragBoxes.put("Mem. Plasmática", new DragNDropBox(20, 400, "Mem. Plasmática"));
+     this.dragBoxes.put("Núcleo", new DragNDropBox(20, 500, "Núcleo"));
+     this.dragBoxes.put("Ribossomo", new DragNDropBox(20, 600, "Ribossomo"));
+     this.dragBoxes.put("Lisossomo", new DragNDropBox(20, 700, "Lisossomo"));
+     this.dragBoxes.put("R. Endoplasmático", new DragNDropBox(1060, 200, "R. Endoplasmático"));
+     this.dragBoxes.put("Parede Celular", new DragNDropBox(1060, 300, "Parede Celular"));
+     this.dragBoxes.put("Citoplasma", new DragNDropBox(1060, 400, "Citoplasma"));
+     this.dragBoxes.put("Vacúolo", new DragNDropBox(1060, 500, "Vacúolo"));
+     this.dragBoxes.put("C. de Golgi", new DragNDropBox(1060, 600, "C. de Golgi"));
+     this.dragBoxes.put("Mitocôndria", new DragNDropBox(1060, 700, "Mitocôndria"));
   }
   
   private void initDragBoxReceipters()
@@ -108,6 +111,7 @@ public class GameLayout extends Layout
     this.dragBoxes.forEach((k, dragBox) -> {
       if (dragBox.isVisible)
       {
+        // If there is no dragbox being dragged
         if (this.dragging == false)
         {
           dragBox.update();
@@ -118,6 +122,7 @@ public class GameLayout extends Layout
             this.dragging = true;
           }
         }
+        // If there is a dragbox being dragged
         else
         {
           if (!this.dragBoxes.get(dragBoxBeingDragged).isBeingDragged)
@@ -126,7 +131,7 @@ public class GameLayout extends Layout
             this.dragBoxes.get(this.dragBoxBeingDragged).update();
         }
         
-        // If has not ended game
+        // If game has not ended yet
         if (this.phase < 12)
         {
           this.dragBoxReceipters.get(this.phase).checkForMatch(dragBox);
@@ -182,48 +187,50 @@ public class GameLayout extends Layout
       Renders the images according to the current game state.
     */
     
+    image(this.gameImages.get("Celulinha"), 50, 50);
+    
     switch (this.phase)
     {
     case 0:
-      this.renderImage(this.gameImages.get("Ribossomo"));
+      this.renderCenteredImage(this.gameImages.get("Ribossomo"));
       break;
     case 1:
-      this.renderImage(this.gameImages.get("Parede Celular"));
+      this.renderCenteredImage(this.gameImages.get("Parede Celular"));
       break;
     case 2:
-      this.renderImage(this.gameImages.get("Mem. Plasmatica"));
+      this.renderCenteredImage(this.gameImages.get("Mem. Plasmatica"));
       break;
     case 3:
-      this.renderImage(this.gameImages.get("Citoplasma"));
+      this.renderCenteredImage(this.gameImages.get("Citoplasma"));
       break;
     case 4:
-      this.renderImage(this.gameImages.get("Mitocondria"));
+      this.renderCenteredImage(this.gameImages.get("Mitocondria"));
       break;
     case 5:
-      this.renderImage(this.gameImages.get("C. de Golgi"));
+      this.renderCenteredImage(this.gameImages.get("C. de Golgi"));
       break;
     case 6:
-      this.renderImage(this.gameImages.get("R. Endoplasmático"));
+      this.renderCenteredImage(this.gameImages.get("R. Endoplasmático"));
       break;
     case 7:
-      this.renderImage(this.gameImages.get("Nucléolo"));
+      this.renderCenteredImage(this.gameImages.get("Nucléolo"));
       break;
     case 8:
-      this.renderImage(this.gameImages.get("Núcleo"));
+      this.renderCenteredImage(this.gameImages.get("Núcleo"));
       break;
     case 9:
-      this.renderImage(this.gameImages.get("Vacúolo"));
+      this.renderCenteredImage(this.gameImages.get("Vacúolo"));
       break;
     case 10:
-      this.renderImage(this.gameImages.get("Lisossomo"));
+      this.renderCenteredImage(this.gameImages.get("Lisossomo"));
       break;
     case 11:
-      this.renderImage(this.gameImages.get("Cloroplasto"));
+      this.renderCenteredImage(this.gameImages.get("Cloroplasto"));
       break;
     }
   }
   
-  private void renderImage(PImage image)
+  private void renderCenteredImage(PImage image)
   {
     image(image, width/2 - image.width / 2, height/2 - image.height / 2);
   }

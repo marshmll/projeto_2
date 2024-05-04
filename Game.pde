@@ -20,7 +20,7 @@ class Game
     this.windowHeight = height;
     
     this.initLayouts();
-    this.playMainTheme();
+    //this.playMainTheme();
   }
   
   private void initLayouts()

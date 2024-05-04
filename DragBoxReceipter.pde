@@ -13,6 +13,7 @@ class DragBoxReceipter
   
   /* CORRECT STATE */
   public boolean isCorrect;
+  public boolean isVisible;
   
   public DragBoxReceipter(float x, float y, String correctDragBoxText)
   {
@@ -23,6 +24,7 @@ class DragBoxReceipter
     this.correctDragBoxText = correctDragBoxText;
     
     this.isCorrect = false;
+    this.isVisible = true;
   }
   
   public void render()
@@ -35,14 +37,10 @@ class DragBoxReceipter
     /*
       @return void
       
-      Checks if a given drag box is the correct one
-      -> Checks if the dragbox is touching receipter box
-      -> Checks if the text is the correct one
-      -> If so, move it to the center and set isCorrect to true
-      -> If not, reset the drag box positions
+      Checks if a given drag box matches correctly
     */
     
-    this.isCorrect = true;
+    this.isCorrect = false;
     
     if (this.x >= dragBox.x - dragBox.image.width / 2 && this.x <= dragBox.x + dragBox.image.width / 2 &&
         this.y >= dragBox.y - dragBox.image.height / 2 && this.y <= dragBox.y + dragBox.image.height / 2)

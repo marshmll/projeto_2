@@ -14,6 +14,9 @@ class DragNDropBox
   /* TEXT CONTENT */
   public String text; 
   
+  public boolean isBeingDragged;
+  public boolean isVisible;
+  
   
   public DragNDropBox(float x, float y, String text)
   {
@@ -24,6 +27,9 @@ class DragNDropBox
     this.initialY = y;
     
     this.text = text;
+    
+    this.isBeingDragged = false;
+    this.isVisible = true;
     
     this.image = loadImage("Images/dragndropbox.png");
   }
@@ -39,13 +45,20 @@ class DragNDropBox
     */
     
     if (mousePressed)
-    {
+    {  
       if (mouseX >= this.x && mouseX <= this.x + this.image.width &&
           mouseY >= this.y && mouseY <= this.y + this.image.height)
       {
-        this.x = mouseX - this.image.width / 2;
-        this.y = mouseY - this.image.height / 2;
+        this.isBeingDragged = true;
       }
+    }
+    
+    if (this.isBeingDragged)
+    {
+      this.setPosition(mouseX - this.image.width / 2,  mouseY - this.image.height / 2);
+      
+      if (!mousePressed)
+        this.isBeingDragged = false;
     }
   }
   

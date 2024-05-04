@@ -51,10 +51,13 @@ class DragBoxReceipter
         {
           dragBox.setPosition(this.x, this.y);
           this.isCorrect = true;
+          popFx.play();
+          popFx.amp(0.6);
         }
         else
         {
           dragBox.resetPosition();
+          wrongFx.play();
         }
       }
     }

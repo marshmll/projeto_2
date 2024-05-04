@@ -7,6 +7,8 @@ PFont JetBrainsMonoBold;
 /* SOUND FILES */
 SoundFile mainTheme;
 SoundFile clickSoundFx;
+SoundFile popFx;
+SoundFile wrongFx;
 
 /* GAME ENGINE */
 Game game;
@@ -26,6 +28,8 @@ void setup()
   /* LOAD SOUND FILES */
   mainTheme = new SoundFile(this, "Sounds/Mind Games.mp3");
   clickSoundFx = new SoundFile(this, "Sounds/mouse-click.mp3");
+  popFx = new SoundFile(this, "Sounds/pop.mp3");
+  wrongFx = new SoundFile(this, "Sounds/wrong.mp3");
   
   /* CREATE A GAME INSTANCE */
   game = new Game();

@@ -1,10 +1,13 @@
 class IntroductionLayout extends Layout
 {
   /* START BUTTON */
-  Button startBtn;
+  private Button startBtn;
   
   /* CHARACTER IMAGE */
-  PImage imgCelulinha;
+  private PImage imgCelulinha;
+  private float imgY;
+  
+  private float incrementer;
   
   /* CONSTRUCTOR */
   public IntroductionLayout(float width, float height)
@@ -13,6 +16,9 @@ class IntroductionLayout extends Layout
     
     this.initButtons();
     this.initImages();
+    
+    this.imgY = 70.f;
+    this.incrementer = 0.f;
   }
   
   private void initButtons()
@@ -49,8 +55,11 @@ class IntroductionLayout extends Layout
       Updates the layout
     */
     
+    this.incrementer += 0.1;
+    
     this.updateSounds();
     this.updateButtons();
+    this.updateImages();
   }
   
   private void updateButtons()
@@ -81,6 +90,15 @@ class IntroductionLayout extends Layout
       clickSoundFx.play();
       clickSoundFx.amp(0.2);
     }
+  }
+  
+  private void updateImages()
+  {
+    /*
+      @return void
+    */
+    
+    this.imgY += 0.5 * sin(incrementer);
   }
   
   public void render()
@@ -120,6 +138,6 @@ class IntroductionLayout extends Layout
   
   private void renderImages()
   {
-    image(imgCelulinha, 80, 70);
+    image(imgCelulinha, 80, this.imgY);
   }
 };

@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class GameLayout extends Layout
 { 
   private int phase;
@@ -7,12 +9,22 @@ public class GameLayout extends Layout
   /* COLLECTION OF DRAGBOXES */
   public HashMap<String, DragNDropBox> dragBoxes;
   
+  public SpeechBubble bubble;
+  
   /* COLLECTION OF DRAGBOXES RECEIPTERS */
   public ArrayList<DragBoxReceipter> dragBoxReceipters;
   
   /* STATE VARIABLES */
   public boolean dragging;
   public String dragBoxBeingDragged;
+  
+  public float bubbleTimer;
+  public float bubbleTimerMax;
+  
+  public float imgY;
+  public float incrementer;
+  
+  public String points;
   
   /* CONSTRUCTOR */
   public GameLayout(float height, float width)
@@ -25,9 +37,18 @@ public class GameLayout extends Layout
     
     this.initDragBoxes();
     this.initDragBoxReceipters();
+    this.initBubbles();
     
     this.dragging = false;
     this.dragBoxBeingDragged = "";
+    
+    this.bubbleTimer = 0.f;
+    this.bubbleTimerMax = 20.f;
+     
+    this.imgY = 50.f;
+    this.incrementer = 0.f;
+    
+    this.points = "Pontos: " + String.valueOf(Math.round(game.playerPoints));
   }
   
   private void initImages()
@@ -100,6 +121,11 @@ public class GameLayout extends Layout
     this.dragBoxReceipters.add(new DragBoxReceipter(280, 577, "Cloroplasto"));
   }
   
+  private void initBubbles()
+  { 
+    this.bubble = new SpeechBubble(180.f, this.imgY + 60.f, "Teste");
+  }
+  
   public void update()
   {
     /*
@@ -107,6 +133,17 @@ public class GameLayout extends Layout
       
       Updates the game layout.
     */
+    
+    if (this.phase == 12)
+    {
+      game.endCurrentLayout();
+      game.pushLayout(new VictoryLayout(this.width, this.height));
+    }
+    
+    this.incrementer += 0.1;
+    this.updateImages();
+    
+    this.points = "Pontos: " + String.valueOf(Math.round(game.playerPoints));
 
     this.dragBoxes.forEach((k, dragBox) -> {
       if (dragBox.isVisible)
@@ -139,11 +176,19 @@ public class GameLayout extends Layout
           if (this.dragBoxReceipters.get(this.phase).isCorrect)
           {
             dragBox.isVisible = false;
-            this.phase++; // Move to next
+            
+            this.showBubble();
+            
+            this.phase++; // Move to next phase
           }
-        } 
+        }
       }
     });
+  }
+  
+  private void updateImages()
+  {
+    this.imgY += 0.5 * sin(incrementer);
   }
   
   public void render()
@@ -157,6 +202,10 @@ public class GameLayout extends Layout
     this.renderBackground();
     
     this.renderImages();
+    
+    this.renderBubble();
+    
+    this.renderPoints();
     
     // If game has not ended yet
     if (this.phase < 12)
@@ -187,7 +236,7 @@ public class GameLayout extends Layout
       Renders the images according to the current game state.
     */
     
-    image(this.gameImages.get("Celulinha"), 50, 50);
+    image(this.gameImages.get("Celulinha"), 50, this.imgY);
     
     switch (this.phase)
     {
@@ -196,42 +245,77 @@ public class GameLayout extends Layout
       break;
     case 1:
       this.renderCenteredImage(this.gameImages.get("Parede Celular"));
+      this.bubble.setText("Muito bem!");
       break;
     case 2:
       this.renderCenteredImage(this.gameImages.get("Mem. Plasmatica"));
+      this.bubble.setText("Isso mesmo!");
       break;
     case 3:
       this.renderCenteredImage(this.gameImages.get("Citoplasma"));
+      this.bubble.setText("Excelente!");
       break;
     case 4:
       this.renderCenteredImage(this.gameImages.get("Mitocondria"));
+      this.bubble.setText("Quase lá!");
       break;
     case 5:
       this.renderCenteredImage(this.gameImages.get("C. de Golgi"));
+      this.bubble.setText("Você é demais!");
       break;
     case 6:
       this.renderCenteredImage(this.gameImages.get("R. Endoplasmático"));
+      this.bubble.setText("Maravilha!");
       break;
     case 7:
       this.renderCenteredImage(this.gameImages.get("Nucléolo"));
+      this.bubble.setText("Sensacional!");
       break;
     case 8:
       this.renderCenteredImage(this.gameImages.get("Núcleo"));
+      this.bubble.setText("Você está\nindo bem!");
       break;
     case 9:
       this.renderCenteredImage(this.gameImages.get("Vacúolo"));
+      this.bubble.setText("Você é\nintelgente!");
       break;
     case 10:
       this.renderCenteredImage(this.gameImages.get("Lisossomo"));
+      this.bubble.setText("Só mais um\npouco!");
       break;
     case 11:
       this.renderCenteredImage(this.gameImages.get("Cloroplasto"));
+      this.bubble.setText("Essa tá\nfácil!");
       break;
     }
+  }
+  
+  private void renderPoints()
+  {
+    textSize(22);
+    
+    text(this.points, this.width - 170, 30);
   }
   
   private void renderCenteredImage(PImage image)
   {
     image(image, width/2 - image.width / 2, height/2 - image.height / 2);
+  }
+  
+  private void renderBubble()
+  {
+    if (this.bubbleTimer != 0.f)
+    {
+      this.bubble.render();
+      this.bubbleTimer += 0.1;
+      
+      if (this.bubbleTimer >= this.bubbleTimerMax)
+        this.bubbleTimer = 0.f;
+    }
+  }
+  
+  private void showBubble()
+  {
+    this.bubbleTimer = .1f;
   }
 }

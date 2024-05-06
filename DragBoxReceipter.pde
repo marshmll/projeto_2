@@ -51,11 +51,18 @@ class DragBoxReceipter
         {
           dragBox.setPosition(this.x, this.y);
           this.isCorrect = true;
+          
+          game.playerPoints += 100.f / 12.f; // Add points
           popFx.play();
           popFx.amp(0.6);
         }
         else
         {
+          game.playerPoints -= 5.f; // Remove points
+          
+          if (game.playerPoints < 0.f)
+            game.playerPoints = 0.f;
+            
           dragBox.resetPosition();
           wrongFx.play();
         }

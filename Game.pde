@@ -10,17 +10,21 @@ class Game
   protected final int windowHeight;
   protected final int windowWidth;
   
+  protected float playerPoints;
+  
   /* LAYOUTS */
   private Stack layouts;
   
   /* CONSTRUCTOR */
-  Game()
+  public Game()
   {
     this.windowWidth = width;
     this.windowHeight = height;
     
+    this.playerPoints = 0.f;
+    
     this.initLayouts();
-    //this.playMainTheme();
+    this.playMainTheme();
   }
   
   private void initLayouts()

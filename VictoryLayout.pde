@@ -13,13 +13,14 @@ class VictoryLayout extends Layout
   private void initImages()
   {
     this.celulinhaImg = loadImage("Images/char.png");
+    celulinhaImg.resize(180, 180);
   }
   
   private void initButtons()
   {
     
-    this.botao = new Button(this.width / 2, 40, 20, 40,
-                                            "VOLTAR", 30,
+    this.botao = new Button(this.width / 2, 80, 20, 40,
+                                            "VOLTAR", 20,
                                             #FFFFFF, #FEFEFE, #B90404,
                                             #B90404, #EE0000, #AA0000);
   }
@@ -29,7 +30,7 @@ class VictoryLayout extends Layout
     {
       game.endCurrentLayout();
     }
-  }  
+  }
   
   public void render()
   {
@@ -38,7 +39,7 @@ class VictoryLayout extends Layout
     String text = "Parabéns! Você acertou todas as alternativas!";
     String points = "Pontos: " + String.valueOf(Math.round(game.playerPoints));
     fill(0);
-    textSize(20);
+    textSize(20); 
     text(text, this.width / 2 - textWidth(text) / 2, this.height - 100);
   }
 }

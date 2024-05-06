@@ -136,9 +136,16 @@ public class GameLayout extends Layout
     
     if (this.phase == 12)
     {
-      game.endCurrentLayout();
-      game.pushLayout(new VictoryLayout(this.width, this.height));
+      if (game.playerPoints >= 100)
+      {
+        game.endCurrentLayout();
+        game.pushLayout(new VictoryLayout(this.width, this.height));
+     }
+       else {
+        game.endCurrentLayout();
+        game.pushLayout(new DefeatLayout(this.width, this.height));
     }
+   }
     
     this.incrementer += 0.1;
     this.updateImages();

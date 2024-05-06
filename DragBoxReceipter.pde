@@ -54,7 +54,7 @@ class DragBoxReceipter
           
           game.playerPoints += 100.f / 12.f; // Add points
           popFx.play();
-          popFx.amp(0.6);
+          popFx.amp(0.3);
         }
         else
         {

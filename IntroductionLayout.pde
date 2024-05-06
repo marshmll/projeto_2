@@ -29,7 +29,7 @@ class IntroductionLayout extends Layout
       Initializes the buttons.
     */
     
-    this.startBtn = new Button(this.width / 2 - 125, this.height - 250, 250, 50,
+    this.startBtn = new Button(this.width / 2 - 125, this.height - 150, 250, 50,
                           "INICIAR", 30,
                           #FFFFFF, #FEFEFE, #B90404, 
                           #B90404, #EE0000, #AA0000); 
@@ -130,10 +130,10 @@ class IntroductionLayout extends Layout
     textSize(40);
     text(text, this.width/2, 160);
     
-    text = "A seguir, você terá que nomear corretamente\nos componentes de uma célula. \nArraste as caixinhas para\no local correto.";
+    text = "A seguir, você terá que nomear corretamente\nos componentes de uma célula. \nArraste as caixinhas para\no local correto.\nA cada acerto você ganhará pontos,\n e a cada erro, perderá um pouco deles.\nSe conseguir 100 pontos, você vencerá!";
     textFont(JetBrainsMonoRegular);
     textSize(40);
-    text(text, this.width/2, 400);
+    text(text, this.width/2, 450);
 }
   
   private void renderImages()

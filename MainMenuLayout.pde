@@ -60,6 +60,12 @@ public class MainMenuLayout extends Layout
       Updates the sounds.
     */
     
+    if (!mainTheme.isPlaying())
+    {
+      mainTheme.loop();
+      mainTheme.amp(0.2);
+    }
+    
     if (mousePressed && !clickSoundFx.isPlaying())
     {
       clickSoundFx.play();
@@ -81,7 +87,7 @@ public class MainMenuLayout extends Layout
     }
     else if (this.buttons.get("ABOUT").isPressed())
     {
-
+      game.pushLayout(new AboutLayout(game.windowWidth, game.windowHeight));
     }
     else if (this.buttons.get("EXIT").isPressed())
     {

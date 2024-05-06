@@ -62,6 +62,10 @@ class Game
     {
       Layout layout = (Layout) this.layouts.peek();
       layout.update();
+    }
+    if (this.layouts.empty() == false)
+    {
+      Layout layout = (Layout) this.layouts.peek();
       layout.render();
     }
     // If not, exit application

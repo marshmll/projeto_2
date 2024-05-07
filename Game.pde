@@ -57,6 +57,9 @@ class Game
     of the layouts stack.
     */
     
+    if (!mainTheme.isPlaying())
+       this.playMainTheme();
+    
     // If there are still layouts in the layouts stack
     if (this.layouts.empty() == false)
     {

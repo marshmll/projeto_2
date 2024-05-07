@@ -10,6 +10,8 @@ SoundFile mainTheme;
 SoundFile clickSoundFx;
 SoundFile popFx;
 SoundFile wrongFx;
+SoundFile victoryFx;
+SoundFile loseFx;
 
 /* GAME ENGINE */
 Game game;
@@ -17,7 +19,8 @@ Game game;
 void setup()
 {
   /* DEFAULT CONFIGURATION */
-  size(1280, 800);
+  //size(1280, 800);
+  fullScreen();
   background(0);
   noStroke();
   surface.setTitle("BioQuiz");
@@ -31,6 +34,8 @@ void setup()
   clickSoundFx = new SoundFile(this, "Sounds/mouse-click.mp3");
   popFx = new SoundFile(this, "Sounds/pop.mp3");
   wrongFx = new SoundFile(this, "Sounds/wrong.mp3");
+  victoryFx = new SoundFile(this, "Sounds/success.mp3");
+  loseFx = new SoundFile(this, "Sounds/lose.mp3");
   
   /* CREATE A GAME INSTANCE */
   game = new Game();

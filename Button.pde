@@ -140,6 +140,12 @@ class Button
       // If the mouse is clicked
       if (mousePressed)
       {
+         if (!clickSoundFx.isPlaying())
+         {
+           clickSoundFx.play();
+           clickSoundFx.amp(0.2);
+         }
+        
         // Set state to active.
         this.state = button_state.BTN_ACTIVE;
         this.isPressed = true;

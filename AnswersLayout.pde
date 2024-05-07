@@ -13,12 +13,13 @@ class AnswersLayout extends Layout
                           "VOLTAR", 30,
                           #FFFFFF, #FEFEFE, #B90404, 
                           #B90404, #EE0000, #AA0000);
-    
-    mainTheme.stop();
   }
   
   public void update()
   {
+    if (mainTheme.isPlaying())
+      mainTheme.stop();
+    
     if (backBtn.isPressed())
       game.endCurrentLayout();
   }

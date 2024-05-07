@@ -65,12 +65,6 @@ public class MainMenuLayout extends Layout
       mainTheme.loop();
       mainTheme.amp(0.2);
     }
-    
-    if (mousePressed && !clickSoundFx.isPlaying())
-    {
-      clickSoundFx.play();
-      clickSoundFx.amp(0.2);
-    }
   }
   
   public void updateButtons()

@@ -32,6 +32,7 @@ public class GameLayout extends Layout
     super(height, width);
     
     this.phase = 0;
+    game.playerPoints = 0.f;
     
     this.initImages();
     
@@ -140,12 +141,13 @@ public class GameLayout extends Layout
       {
         game.endCurrentLayout();
         game.pushLayout(new VictoryLayout(this.width, this.height));
-     }
-       else {
+      }
+      else
+      {
         game.endCurrentLayout();
         game.pushLayout(new DefeatLayout(this.width, this.height));
+      }
     }
-   }
     
     this.incrementer += 0.1;
     this.updateImages();

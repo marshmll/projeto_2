@@ -19,8 +19,7 @@ Game game;
 void setup()
 {
   /* DEFAULT CONFIGURATION */
-  //size(1280, 800);
-  fullScreen();
+  size(1280, 800);
   background(0);
   noStroke();
   surface.setTitle("BioQuiz");
